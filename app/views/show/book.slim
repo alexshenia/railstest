@@ -1,0 +1,6 @@
+div = @show.movie.title
+div = @show.start_at.strftime('%Y-%m-%d %H:%M')
+= form_for :ticket, url: book_ticket_path(@show) do |f|
+  = f.collection_select :seat_id, @seats, :id, :name, include_false: true
+  br
+  = f.submit

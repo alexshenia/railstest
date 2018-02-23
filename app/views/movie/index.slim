@@ -1,0 +1,20 @@
+table
+  tr
+    th
+      - @week_days.each do |date|
+        th = date.strftime('%Y-%m-%d')
+          
+  - @schedule.each do |movie, date_shows|
+    tr
+      th = movie.title
+      - @week_days.each do |day|
+        td
+          - date_shows[day]&.each do |hall, shows|
+            span
+              ' #{hall}:
+            - shows.each do |show|
+              = link_to(page_path(show.id)) do
+                span style='padding-right: 5px'
+                  = show.start_at.strftime('%H:%M')
+              '
+            br
